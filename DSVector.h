@@ -47,8 +47,12 @@ DSVector<T>::DSVector(int space){
     capacity = space;
 }
 template <typename T>
-DSVector<T>::DSVector(const DSVector<T>&){
-
+DSVector<T>::DSVector(const DSVector<T>& vec){
+    data = new T[vec.size];
+    this->size = vec.size;
+    for (int i=0; i<vec.size; i++){
+        data[i] = vec.data[i];
+    }
 }
 template <typename T>
 DSVector<T>::~DSVector(){
@@ -122,6 +126,9 @@ void DSVector<T>::remove(int){
     size--;
 }
 template <typename T>
-void DSVector<T>::print(){}
+void DSVector<T>::print(){
+    for (int i=0; i<size; i++)
+        std::cout<<data[i]<<std::endl;
+}
 
 #endif //INC_20F_AUTO_IDX_DSVECTOR_H
