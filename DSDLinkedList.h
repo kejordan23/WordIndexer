@@ -27,7 +27,11 @@ class DSDLinkedList{
         Node<T>* end;
         int size;
     public:
-        DSDLinkedList(): front(nullptr), end(nullptr), size(0){};
+        DSDLinkedList(){
+            front->next = nullptr;
+            //end->prev = front;
+            size = 0;
+        };
         ~DSDLinkedList(){clear(); delete front; delete end;};
         DSDLinkedList(const DSDLinkedList<T>&);
         DSDLinkedList<T>& operator=(const DSDLinkedList<T>&);
@@ -35,6 +39,7 @@ class DSDLinkedList{
         T& getElement(int);
         int getSize();
         void insertAtFront(T);
+        void insertAtEnd(T);
         void insertAt(int, T);
         void remove(int);
         void clear();
@@ -96,7 +101,7 @@ template <typename T>
 void DSDLinkedList<T>::insertAtFront(T val){
     Node<T>* temp = new Node<T>(val);
     if(empty()){
-        front = temp;
+        front->next = temp;
         end->prev = temp;
         size++;
     }
@@ -104,6 +109,17 @@ void DSDLinkedList<T>::insertAtFront(T val){
         temp->next = front;
         front->prev = temp;
         front = temp;
+        size++;
+    }
+}
+template <typename T>
+void DSDLinkedList<T>::insertAtEnd(T elem){
+    Node<T>* temp = new Node<T>(elem);
+    if(empty())
+        insertAtFront(elem);
+    else{
+        end->prev->next = temp;
+        end->prev = temp;
         size++;
     }
 }
