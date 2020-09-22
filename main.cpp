@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
         for(int i=1; i<=5; i++){
             list.insertAtEnd(i);
         }
-        //list.print();
+        list.print();
 
     }
     return 0;

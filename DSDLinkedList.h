@@ -28,11 +28,11 @@ class DSDLinkedList{
         int size;
     public:
         DSDLinkedList(){
-            front->next = nullptr;
-            //end->prev = front;
+            front = nullptr;
+            end = nullptr;
             size = 0;
         };
-        ~DSDLinkedList(){clear(); delete front; delete end;};
+        ~DSDLinkedList(){clear();};
         DSDLinkedList(const DSDLinkedList<T>&);
         DSDLinkedList<T>& operator=(const DSDLinkedList<T>&);
         bool empty();
@@ -87,7 +87,10 @@ DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
 }
 template <typename T>
 bool DSDLinkedList<T>::empty(){
-    return (front->next == nullptr);
+    if (size ==0)
+        return true;
+    else
+        return false;
 }
 template <typename T>
 T& DSDLinkedList<T>::getElement(int){
@@ -101,13 +104,15 @@ template <typename T>
 void DSDLinkedList<T>::insertAtFront(T val){
     Node<T>* temp = new Node<T>(val);
     if(empty()){
-        front->next = temp;
-        end->prev = temp;
+        front = temp;
+        end = temp;
         size++;
     }
     else {
-        temp->next = front;
-        front->prev = temp;
+        Node<T>* curr = front;
+        curr->prev = temp;
+        temp->next = curr;
+        end = curr;
         front = temp;
         size++;
     }
@@ -118,8 +123,10 @@ void DSDLinkedList<T>::insertAtEnd(T elem){
     if(empty())
         insertAtFront(elem);
     else{
-        end->prev->next = temp;
-        end->prev = temp;
+        Node<T>* curr = end;
+        curr->next = temp;
+        temp->prev = curr;
+        end = temp;
         size++;
     }
 }
@@ -160,15 +167,15 @@ void DSDLinkedList<T>::remove(int loc){
 template <typename T>
 void DSDLinkedList<T>::clear(){
     for (int i = 0; i<size; i++) {
-        Node<T> *curr = end->prev;
-        end->prev = curr->prev;
+        Node<T> *curr = end;
+        end = curr->prev;
         delete curr;
     }
 }
 template <typename T>
 void DSDLinkedList<T>::print(){
     Node<T>* curr = front;
-    while(curr->next != nullptr){
+    for(int i =0; i<size; i++){
         std::cout<< curr->data<<std::endl;
         curr = curr->next;
     }
