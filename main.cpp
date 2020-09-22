@@ -25,19 +25,22 @@ int main(int argc, char* argv[]) {
         output<<"Hello World"<<endl;
 
         /*
-        DSString a1[] = {"Kylie", "John", "Byron", "Amy"};
+        DSString a1 = "Kylie";
+        DSString a2 = "John";
+        DSString a3 = "Byron";
         DSVector<DSString> vec = DSVector<DSString>();
-        for (int i=0; i<sizeof(a1); i++)
-            vec.push_back(a1[i]);
-        vec.print();
+        vec.push_back(a1);
+        vec.push_back(a2);
+        vec.push_back(a3);
+        vec.print();*/
 
-
+        /*
         output.close();
         inputFile.close();*/
-        //DSDLinkedList<int> list = DSDLinkedList<int>();
-        /*for(int i=1; i<=5; i++){
+        DSDLinkedList<int> list = DSDLinkedList<int>();
+        for(int i=1; i<=5; i++){
             list.insertAtEnd(i);
-        }*/
+        }
         //list.print();
 
     }
