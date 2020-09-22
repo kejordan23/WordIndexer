@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
         if (!output.is_open() || !inputFile.is_open())
             cout << "unable to open file" << endl;
 
+        output<<"Hello World"<<endl;
         /*DSString a1[] = {"Kylie", "John", "Byron", "Amy"};
         DSVector<DSString> vec = DSVector<DSString>();
         for (int i=0; i<sizeof(a1); i++)
