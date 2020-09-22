@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
         return Catch::Session().run();
     }
     else {
-        ifstream inputFile;
+        /*ifstream inputFile;
         ofstream output;
         //opening files with a conditional to check if they open correctly
         inputFile.open(argv[1]);
@@ -25,15 +25,15 @@ int main(int argc, char* argv[]) {
         output<<"Hello World"<<endl;
 
 
-        /*DSString a1[] = {"Kylie", "John", "Byron", "Amy"};
+        DSString a1[] = {"Kylie", "John", "Byron", "Amy"};
         DSVector<DSString> vec = DSVector<DSString>();
         for (int i=0; i<sizeof(a1); i++)
             vec.push_back(a1[i]);
-        vec.print();*/
+        vec.print();
 
 
         output.close();
-        inputFile.close();
+        inputFile.close();*/
     }
     return 0;
 }
