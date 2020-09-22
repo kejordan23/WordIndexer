@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "DSString.h"
 
 template <typename T>
 class DSVector{
@@ -71,7 +72,7 @@ DSVector<T>& DSVector<T>::operator= (const DSVector& vec){
 }
 template <typename T>
 T& DSVector<T>::operator[](int loc){
-    if(loc < capacity && loc > 0)
+    if(loc < capacity && loc >= 0)
         return data[loc];
     else {
         return data[size - 1];
@@ -122,8 +123,14 @@ void DSVector<T>::push_back(T& elem){
     size++;
 }
 template <typename T>
-void DSVector<T>::remove(int){
-    size--;
+void DSVector<T>::remove(int loc){
+    if (loc == (size-1))
+        size--;
+    else if (loc >=0 && loc<size){
+        for(int i=loc; i<(size-1); i++)
+            data[i] = data[i+1];
+        size--;
+    }
 }
 template <typename T>
 void DSVector<T>::print(){

@@ -43,11 +43,42 @@ class DSDLinkedList{
 
 template <typename T>
 DSDLinkedList<T>::DSDLinkedList(const DSDLinkedList<T>& list2){
-
+    Node<T>* curr = list2.front;
+    for(int i=0; i<list2.size; i++){
+        Node<T>* temp = curr;
+        if(empty()){
+            front = temp;
+            end->prev = temp;
+            size++;
+        }
+        else{
+            end->prev->next = temp;
+            end->prev = temp;
+            size++;
+        }
+        curr = curr->next;
+    }
 }
 template <typename T>
-DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>&){
-
+DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
+    if(this == &list2)
+        return *this;
+    Node<T>* curr = list2.front;
+    for(int i=0; i<list2.size; i++){
+        Node<T>* temp = curr;
+        if(empty()){
+            front = temp;
+            end->prev = temp;
+            size++;
+        }
+        else{
+            end->prev->next = temp;
+            end->prev = temp;
+            size++;
+        }
+        curr = curr->next;
+    }
+    return *this;
 }
 template <typename T>
 bool DSDLinkedList<T>::empty(){
@@ -120,7 +151,11 @@ void DSDLinkedList<T>::clear(){
 }
 template <typename T>
 void DSDLinkedList<T>::print(){
-
+    Node<T>* curr = front;
+    while(curr->next != nullptr){
+        std::cout<< curr->data<<std::endl;
+        curr = curr->next;
+    }
 }
 
 #endif //INC_20F_AUTO_IDX_DSDLINKEDLIST_H
