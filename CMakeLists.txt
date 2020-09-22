@@ -13,7 +13,7 @@ set (EXE_NAME indexer)
 
 set (input01 "input01.txt")
 set (input02 "input02.txt")
-set (input02 "input03.txt")
+set (input03 "input03.txt")
 
 #
 ##########################################
