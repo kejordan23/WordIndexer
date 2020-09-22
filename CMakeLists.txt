@@ -12,8 +12,6 @@ set (EXE_NAME indexer)
 # etc....
 
 set (input01 "input01.txt")
-set (input02 "input02.txt")
-set (input03 "input03.txt")
 
 #
 ##########################################
