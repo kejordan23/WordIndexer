@@ -86,20 +86,39 @@ TEST_CASE("DSVector class", "[int]"){
 
 
 
-/*
+
 TEST_CASE("[DSStrings}"){
-    DSString a1[] = {"Kylie", "John", "Byron", "Amy"};
-    DSString a2[] = {"cat", "dog", "wolf", "tiger", "possum", "marmot"};
-    DSString a3[] = {"house", "car", "trailer"};
+    DSString a1 = "Kylie";
+    DSString a2 = "John";
+    DSString a3 = "Byron";
+    DSString a4 = "Amy";
+    DSString b1 = "cat";
+    DSString b2 = "dog";
+    DSString b3 = "wolf";
+    DSString b4 = "tiger";
+    DSString b5 = "possum";
+    DSString b6 = "marmot";
+    DSString c1 = "house";
+    DSString c2 = "car";
+    DSString c3 = "trailer";
+    //DSString a2[] = {"cat", "dog", "wolf", "tiger", "possum", "marmot"};
+    //DSString a3[] = {"house", "car", "trailer"};
     DSVector<DSString> vec = DSVector<DSString>();
     DSVector<DSString> vec2 = DSVector<DSString>();
     DSVector<DSString> vec3 = DSVector<DSString>();
-    for (int i=0; i<sizeof(a1); i++)
-        vec.push_back(a1[i]);
-    for (int i=0; i<sizeof(a2); i++)
-        vec2.push_back(a2[i]);
-    for (int i=0; i<sizeof(a3); i++)
-        vec3.push_back(a3[i]);
+    vec.push_back(a1);
+    vec.push_back(a2);
+    vec.push_back(a3);
+    vec.push_back(a4);
+    vec2.push_back(b1);
+    vec2.push_back(b2);
+    vec2.push_back(b3);
+    vec2.push_back(b4);
+    vec2.push_back(b5);
+    vec2.push_back(b6);
+    vec3.push_back(c1);
+    vec3.push_back(c2);
+    vec3.push_back(c3);
     SECTION("Equality operator"){
         DSVector<DSString> vec4 = DSVector<DSString>();
         vec4 = vec;
@@ -107,7 +126,6 @@ TEST_CASE("[DSStrings}"){
         REQUIRE((vec4[1] == vec[1]));
         REQUIRE((vec4[2] == vec[2]));
         REQUIRE((vec4[3] == vec[3]));
-        REQUIRE((vec4[4] == vec[4]));
     }
     SECTION("Subscript"){
         REQUIRE((vec2[0] == "cat"));
@@ -149,10 +167,18 @@ TEST_CASE("[DSStrings}"){
         REQUIRE((vec[4] == "Tim"));
     }
     SECTION("push_back()"){
-        DSString a4[] = {"cool", "brb", "ttyl", "tbh", "btw"};
+        //DSString a4[] = {"cool", "brb", "ttyl", "tbh", "btw"};
+        DSString d1 = "cool";
+        DSString d2 = "brb";
+        DSString d3 = "ttyl";
+        DSString d4 = "tbh";
+        DSString d5 = "btw";
         DSVector<DSString> vec7 = DSVector<DSString>();
-        for (int i=0; i<sizeof(a4); i++)
-            vec7.push_back(a4[i]);
+        vec7.push_back(d1);
+        vec7.push_back(d2);
+        vec7.push_back(d3);
+        vec7.push_back(d4);
+        vec7.push_back(d5);
         REQUIRE((vec7[0] == "cool"));
         REQUIRE((vec7[1] == "brb"));
         REQUIRE((vec7[2] == "ttyl"));
@@ -167,5 +193,5 @@ TEST_CASE("[DSStrings}"){
         vec2.remove(2);
         REQUIRE((vec2[2] == "marmot"));
     }
-}*/
+}
 

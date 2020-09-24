@@ -93,6 +93,8 @@ T& DSVector<T>::getElement(int loc){
     if (loc < size){
         return data[loc];
     }
+    else
+        return data[size-1];
 }
 template <typename T>
 void DSVector<T>::insert(int loc, T elem){
