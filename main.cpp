@@ -41,7 +41,12 @@ int main(int argc, char* argv[]) {
         for(int i=1; i<=5; i++){
             list.insertAtEnd(i);
         }
-        list.print();
+        int first = list.getElement(0);
+        int sec = list.getElement(1);
+        int third = list.getElement(2);
+        cout<<first<<endl;
+        cout<<sec<<endl;
+        cout<<third<<endl;
 
     }
     return 0;

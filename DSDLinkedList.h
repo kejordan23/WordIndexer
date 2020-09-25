@@ -18,6 +18,7 @@ public:
     Node<T>* prev;
     Node(T& val = T(), Node* n = nullptr, Node* d = nullptr): data(val), next(n), prev(d){};
     ~Node(){};
+    //T& getData(){return data;};
 };
 
 template <typename T>
@@ -48,40 +49,44 @@ class DSDLinkedList{
 
 template <typename T>
 DSDLinkedList<T>::DSDLinkedList(const DSDLinkedList<T>& list2){
-    Node<T>* curr = list2.front;
+    Node<T>* curr2 = list2.front;
     for(int i=0; i<list2.size; i++){
-        Node<T>* temp = curr;
+        Node<T>* temp = curr2;
         if(empty()){
             front = temp;
-            end->prev = temp;
+            end = temp;
             size++;
         }
         else{
-            end->prev->next = temp;
-            end->prev = temp;
+            Node<T>* curr = end;
+            curr->next = temp;
+            temp->prev = curr;
+            end = temp;
             size++;
         }
-        curr = curr->next;
+        curr2 = curr2->next;
     }
 }
 template <typename T>
 DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
     if(this == &list2)
         return *this;
-    Node<T>* curr = list2.front;
+    Node<T>* curr2 = list2.front;
     for(int i=0; i<list2.size; i++){
-        Node<T>* temp = curr;
+        Node<T>* temp = curr2;
         if(empty()){
             front = temp;
-            end->prev = temp;
+            end = temp;
             size++;
         }
         else{
-            end->prev->next = temp;
-            end->prev = temp;
+            Node<T>* curr = end;
+            curr->next = temp;
+            temp->prev = curr;
+            end = temp;
             size++;
         }
-        curr = curr->next;
+        curr2 = curr2->next;
     }
     return *this;
 }
@@ -93,8 +98,12 @@ bool DSDLinkedList<T>::empty(){
         return false;
 }
 template <typename T>
-T& DSDLinkedList<T>::getElement(int){
-    return data;
+T& DSDLinkedList<T>::getElement(int loc){
+    Node<T> *curr = front;
+    for (int i = 0; (i < loc) && (curr->next != nullptr); i++) {
+        curr = curr->next;
+    }
+    return curr->data;
 }
 template <typename T>
 int DSDLinkedList<T>::getSize(){
@@ -166,10 +175,14 @@ void DSDLinkedList<T>::remove(int loc){
 }
 template <typename T>
 void DSDLinkedList<T>::clear(){
-    for (int i = 0; i<size; i++) {
-        Node<T> *curr = end;
-        end = curr->prev;
-        delete curr;
+    if(front != nullptr && front->next != nullptr) {
+        Node<T> *curr = front;
+        Node<T> *rem = 0;
+        for (int i = 0; i < size; i++) {
+            rem = curr;
+            curr = curr->next;
+            delete rem;
+        }
     }
 }
 template <typename T>
