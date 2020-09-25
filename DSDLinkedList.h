@@ -175,7 +175,7 @@ void DSDLinkedList<T>::remove(int loc){
 }
 template <typename T>
 void DSDLinkedList<T>::clear(){
-    if(front != nullptr && front->next != nullptr) {
+    /*if(front != nullptr && front->next != nullptr) {
         Node<T> *curr = front;
         Node<T> *rem = 0;
         for (int i = 0; i < size; i++) {
@@ -183,7 +183,21 @@ void DSDLinkedList<T>::clear(){
             curr = curr->next;
             delete rem;
         }
+    }*/
+    if (front != nullptr){
+        Node<T> *curr = front;
+        Node<T> *rem = 0;
+        while (curr != nullptr){
+            rem = curr->next;
+            delete curr;
+            curr = rem;
+        }
     }
+    if (front == nullptr){
+        delete front;
+        delete end;
+    }
+    size = 0;
 }
 template <typename T>
 void DSDLinkedList<T>::print(){
