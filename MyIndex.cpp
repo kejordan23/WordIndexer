@@ -13,14 +13,17 @@ using namespace std;
 
 MyIndex::MyIndex(istream& input, ofstream& output){
     DSString page;
-    DSString words;
+    DSString words = "";
     input.getline(line, 80);
     while (strcmp(line, "<-1>") != 0){
         if(line[0] == '<')
             page = line;
         input.getline(line, 80);
         while(line[0] != '<'){
-            words = words + " " + line;
+            if(words == "")
+                words = line;
+            else
+                words = words +" " + line;
             input.getline(line, 80);
         }
         processWrds(page, words);
@@ -28,6 +31,48 @@ MyIndex::MyIndex(istream& input, ofstream& output){
     }
 }
 void MyIndex::processWrds(DSString page, DSString words){
-    cout<<page<<endl;
-    cout<<words<<endl;
+    char temp = words[0];
+    char temp2 = ' ';
+    DSString word;
+    DSString parent = "";
+    int index = 0;
+    int i = 0;
+    int j = 0;
+    while (i<words.getLength()){
+        if (temp != '[' && temp != '(') {
+            temp2 = words[i+1];
+            index = i;
+            while (temp2 != ' ' && temp2 != '\0') {
+                i++;
+                temp2 = words[i];
+            }
+            word = words.substr(index, i - index);
+            i++;
+        }
+        if (temp == '[') {
+            temp2 = words[i+1];
+            index = i+1;
+            while (temp2 != ']' && temp2 != '\0') {
+                i++;
+                temp2 = words[i];
+            }
+            word = words.substr(index, i - index);
+            i+=2;
+        }
+        if (temp == '(') {
+            temp2 = words[i+1];
+            index = i;
+            while (temp2 != ')' && temp2 != '\0') {
+                i++;
+                temp2 = words[i];
+            }
+            parent = words.substr(index, i - index);
+            cout<<"--"<<parent<<endl;
+            i++;
+        }
+        temp = words[i];
+        cout<<"--"<<word<<"--"<<endl;
+        //word = " ";
+        index = 0;
+    }
 }
