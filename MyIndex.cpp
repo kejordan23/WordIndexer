@@ -66,7 +66,7 @@ void MyIndex::processWrds(DSString page, DSString words){
                 i++;
                 temp2 = words[i];
             }
-            parent = words.substr(index, i - index);
+            parent = words.substr(index, i - index-1);
             cout<<"--"<<parent<<endl;
             i++;
         }

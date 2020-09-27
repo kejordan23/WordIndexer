@@ -23,7 +23,8 @@ int main(int argc, char* argv[]) {
         if (!output.is_open() || !inputFile.is_open())
             cout << "unable to open file" << endl;
 
-        MyIndex i(inputFile, output);
+        //MyIndex i(inputFile, output);
+
         /*
         DSString a1 = "Kylie";
         DSString a2 = "John";
@@ -34,7 +35,7 @@ int main(int argc, char* argv[]) {
         vec.push_back(a3);
         vec.print();*/
 
-        /*DSDLinkedList<int> list = DSDLinkedList<int>();
+        DSDLinkedList<int> list = DSDLinkedList<int>();
         for(int i=1; i<=5; i++){
             list.insertAtEnd(i);
         }
@@ -43,7 +44,8 @@ int main(int argc, char* argv[]) {
         int third = list.getElement(2);
         cout<<first<<endl;
         cout<<sec<<endl;
-        cout<<third<<endl;*/
+        cout<<third<<endl;
+        list.clear();
 
         output.close();
         inputFile.close();

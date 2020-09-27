@@ -18,7 +18,6 @@ public:
     Node<T>* prev;
     Node(T& val = T(), Node* n = nullptr, Node* d = nullptr): data(val), next(n), prev(d){};
     ~Node(){};
-    //T& getData(){return data;};
 };
 
 template <typename T>
@@ -186,7 +185,7 @@ void DSDLinkedList<T>::clear(){
     }*/
     if (front != nullptr){
         Node<T> *curr = front;
-        Node<T> *rem = 0;
+        Node<T> *rem;
         while (curr != nullptr){
             rem = curr->next;
             delete curr;
