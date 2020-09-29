@@ -27,6 +27,7 @@ class DSVector{
 
         int getCapacity();
         int getSize();
+        bool empty();
         T& getElement(int);
         void insert(int, T);
         void push_back(T&);
@@ -37,9 +38,9 @@ class DSVector{
 
 template <typename T>
 DSVector<T>::DSVector(){
-    data = new T[10];
+    data = new T[50];
     size = 0;
-    capacity = 10;
+    capacity = 50;
 }
 template <typename T>
 DSVector<T>::DSVector(int space){
@@ -87,6 +88,13 @@ int DSVector<T>::getCapacity(){
 template <typename T>
 int DSVector<T>::getSize(){
     return size;
+}
+template <typename T>
+bool DSVector<T>::empty(){
+    if(size == 0)
+        return true;
+    else
+        return false;
 }
 template <typename T>
 T& DSVector<T>::getElement(int loc){

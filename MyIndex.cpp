@@ -30,6 +30,8 @@ MyIndex::MyIndex(istream& input, ofstream& output){
         processWrds(page, words);
         words = "";
     }
+    for(int i = 0; i<entries.getSize(); i++)
+        entries[i].print();
 }
 void MyIndex::processWrds(DSString page, DSString words){
     char temp = words[0];
@@ -49,7 +51,7 @@ void MyIndex::processWrds(DSString page, DSString words){
                 temp2 = words[i];
             }
             word = words.substr(index, i - index);
-            cout<<"--"<<word<<"--"<<endl;
+            addToIndex(word, page);
             i++;
         }
         if (temp == '[') {
@@ -60,7 +62,7 @@ void MyIndex::processWrds(DSString page, DSString words){
                 temp2 = words[i];
             }
             phrase = words.substr(index, i - index);
-            cout<<phrase<<endl;
+            addToIndex(phrase, page);
             i+=2;
         }
         if (temp == '(') {
@@ -71,12 +73,33 @@ void MyIndex::processWrds(DSString page, DSString words){
                 temp2 = words[i];
             }
             parent = words.substr(index, i - index-1);
-            cout<<"--"<<parent<<endl;
             i++;
         }
         temp = words[i];
-        //cout<<"--"<<word<<"--"<<endl;
-        //word = " ";
         index = 0;
+    }
+}
+void MyIndex::addToIndex(DSString word, DSString page){
+    word.removeEndPunc(word);
+    DSString lowVers = word.retLower(word);
+    DSString lowCurr;
+    if(entries.empty()){
+        IndexEntry i(word, page);
+        entries.push_back(i);
+    }
+    else{
+        int index = 0;
+        for(int i = 0; i<entries.getSize(); i++){
+            lowCurr = lowCurr.retLower(entries[i].getWord());
+            if(lowCurr == lowVers)
+                index = i;
+        }
+        if (index != 0){
+            entries[index].addPage(page);
+        }
+        else{
+            IndexEntry i(word, page);
+            entries.push_back(i);
+        }
     }
 }

@@ -33,11 +33,10 @@ class IndexEntry{
                 pages.insertAtEnd(page);
             else{
                 int loc = 0;
-                for(int i = 0; i<pages.getSize(); i++){
-                    if(page<pages.getElement(i))
-                        loc = i;
-                }
-                pages.insertAt(loc, page);
+                while(page>pages.getElement(loc))
+                    loc++;
+                if(page != pages.getElement(loc))
+                    pages.insertAt(loc, page);
             }
         };
         void print(){

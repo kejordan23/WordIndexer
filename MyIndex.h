@@ -15,7 +15,7 @@
 class MyIndex{
     private:
         char line[80];
-        //DSVector<IndexEntry> entries = DSVector<IndexEntry>();
+        DSVector<IndexEntry> entries = DSVector<IndexEntry>();
         //vector to store IndexEntry objects?
     public:
         MyIndex(istream&, ofstream&);
