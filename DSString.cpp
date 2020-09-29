@@ -114,7 +114,8 @@ int DSString::getLength(){      //returns DSString cstring length
     return strlen(str);
 }
 DSString DSString::substr(int start, int numChars){     //returns a new DSString given bounds within this DSString
-    DSString temp = new char[numChars+1];
+    DSString temp;
+    temp.str = new char[numChars+1];
     strncpy(temp.str, str + start, numChars);
     temp[numChars]= '\0';
     return temp;

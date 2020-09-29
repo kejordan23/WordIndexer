@@ -133,18 +133,19 @@ void DSDLinkedList<T>::insertAtEnd(T elem){
         }
         curr->next = temp;
         temp->prev = curr;
+        end = temp;
     }
     size++;
 }
 template <typename T>
 void DSDLinkedList<T>::insertAt(int loc, T val){
-    if(empty()){
-        insertAtfront(val);
+    if(size == 0){
+        insertAtFront(val);
     }
     else if (loc>0 && loc<size){
         Node<T> *temp = new Node<T>(val);
         Node<T> *curr = front;
-        for (int i = 0; (i < loc) && (curr->next != nullptr); i++) {
+        for (int i = 0; (i < loc-1) && (curr->next != nullptr); i++) {
             curr = curr->next;
         }
         temp->next = curr->next;

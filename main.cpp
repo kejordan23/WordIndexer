@@ -7,6 +7,7 @@
 #include "DSDLinkedList.h"
 #include "DSString.h"
 #include "MyIndex.h"
+#include "IndexEntry.h"
 
 using namespace std;
 
@@ -47,6 +48,17 @@ int main(int argc, char* argv[]) {
         DSString test2 = test.retLower(test);
         cout<<test2<<"---"<<endl;
         cout<<test<<"---"<<endl;*/
+
+        /*DSString test = "algorithm";
+        DSString pg = "<1>";
+        DSString pg2 = "<15>";
+        DSString pg3 = "<200>";
+        DSString pg4 = "<5>";
+        IndexEntry i(test, pg);
+        i.addPage(pg2);
+        i.addPage(pg3);
+        i.addPage(pg4);
+        i.print();*/
 
         output.close();
         inputFile.close();

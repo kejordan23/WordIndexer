@@ -14,10 +14,36 @@
 class IndexEntry{
     private:
         DSString word;
-        //list of page numbers?
+        DSDLinkedList<int> pages = DSDLinkedList<int>();
     public:
-        IndexEntry();
-        IndexEntry(DSString, DSString);
+        IndexEntry(){word = "";};
+        IndexEntry(DSString wrd, DSString pg){
+            word = wrd;
+            DSString temp = pg.substr(1, pg.getLength()-2);
+            int page = atoi(temp.c_str());
+            pages.insertAtFront(page);
+        };
+        DSString& getWord(){return word;};
+        void addPage(DSString pg){
+            DSString temp = pg.substr(1, pg.getLength()-2);
+            int page = atoi(temp.c_str());
+            if(pages.getSize()==1 && pages.getElement(0)>page)
+                pages.insertAtFront(page);
+            else if(pages.getElement(pages.getSize()-1)<page)
+                pages.insertAtEnd(page);
+            else{
+                int loc = 0;
+                for(int i = 0; i<pages.getSize(); i++){
+                    if(page<pages.getElement(i))
+                        loc = i;
+                }
+                pages.insertAt(loc, page);
+            }
+        };
+        void print(){
+            std::cout<<"word: "<<word<<std::endl;
+            pages.print();
+        };
 };
 
 #endif //INC_20F_AUTO_IDX_INDEXENTRY_H
