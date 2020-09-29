@@ -7,6 +7,7 @@
 
 #include "DSString.h"
 #include <iostream>
+#include <cctype>
 #include <cstring>
 #include <vector>
 #include <set>
@@ -149,6 +150,28 @@ void DSString::removeBdChrs(std::vector<DSString>& words){ //removes unwanted ch
         words[i]=last;
         last = "";
     }
+}
+void DSString::removeEndPunc(DSString& word){
+    DSString last = "";
+    int i = strlen(word.str)-1;
+    char t = word[i];
+    while (ispunct(t)) {
+        i--;
+        t = word[i];
+    }
+    last = substr(0, i+1);
+    word = last;
+}
+DSString DSString::retLower(DSString word){
+    int dec=0;
+    DSString final = word;
+    for (int i = 0; i<strlen(final.str); i++){
+        dec = final[i];
+        if (final[i] >= 'A' && final[i] <= 'Z'){
+            final[i] = ('a' + dec - 'A');
+        }
+    }
+    return final;
 }
 
 

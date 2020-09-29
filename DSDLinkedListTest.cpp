@@ -29,13 +29,23 @@ TEST_CASE ("DSDLinkedList class", "[int]"){
         REQUIRE((list4.getElement(4) == list.getElement(4)));
     }
     SECTION("empty()"){
-
+        DSDLinkedList<int> list5 = DSDLinkedList<int>();
+        REQUIRE((list.empty() == false));
+        REQUIRE((list2.empty() == false));
+        REQUIRE((list5.empty() == true));
     }
     SECTION("getElement()"){
-
+        REQUIRE((list2.getElement(0) == 2));
+        REQUIRE((list2.getElement(1) == 4));
+        REQUIRE((list2.getElement(2) == 6));
+        REQUIRE((list2.getElement(3) == 8));
+        REQUIRE((list2.getElement(4) == 10));
+        REQUIRE((list2.getElement(9) != 8));
     }
     SECTION("getSize()"){
-
+        REQUIRE((list.getSize() == 5));
+        REQUIRE((list2.getSize() == 10));
+        REQUIRE((list3.getSize() == 10));
     }
     SECTION("insertAtFront()"){
 
@@ -50,6 +60,11 @@ TEST_CASE ("DSDLinkedList class", "[int]"){
 
     }
     SECTION("clear()"){
-
+        list.clear();
+        list2.clear();
+        list3.clear();
+        REQUIRE((list.getSize() == 0));
+        REQUIRE((list2.getSize() == 0));
+        REQUIRE((list3.getSize() == 0));
     }
 }

@@ -17,7 +17,6 @@ public:
     Node<T>* next;
     Node<T>* prev;
     Node(T& val = T(), Node* n = nullptr, Node* d = nullptr): data(val), next(n), prev(d){};
-    ~Node(){};
 };
 
 template <typename T>
@@ -38,6 +37,7 @@ class DSDLinkedList{
         bool empty();
         T& getElement(int);
         int getSize();
+        T& getEndNode();
         void insertAtFront(T);
         void insertAtEnd(T);
         void insertAt(int, T);
@@ -71,19 +71,12 @@ DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
     if(this == &list2)
         return *this;
     Node<T>* curr2 = list2.front;
-    for(int i=0; i<list2.size; i++){
-        Node<T>* temp = curr2;
+    while(curr2 != nullptr){
         if(empty()){
-            front = temp;
-            end = temp;
-            size++;
+            insertAtFront(curr2->data);
         }
         else{
-            Node<T>* curr = end;
-            curr->next = temp;
-            temp->prev = curr;
-            end = temp;
-            size++;
+            insertAtEnd(curr2->data);
         }
         curr2 = curr2->next;
     }
@@ -109,34 +102,39 @@ int DSDLinkedList<T>::getSize(){
     return size;
 }
 template <typename T>
+T& DSDLinkedList<T>::getEndNode(){
+    return end->data;
+}
+template <typename T>
 void DSDLinkedList<T>::insertAtFront(T val){
     Node<T>* temp = new Node<T>(val);
     if(empty()){
-        front = temp;
-        end = temp;
+        front = end = temp;
         size++;
     }
     else {
         Node<T>* curr = front;
         curr->prev = temp;
         temp->next = curr;
-        end = curr;
         front = temp;
+        end = curr;
         size++;
     }
 }
 template <typename T>
 void DSDLinkedList<T>::insertAtEnd(T elem){
     Node<T>* temp = new Node<T>(elem);
-    if(empty())
-        insertAtFront(elem);
+    if(size == 0)
+        front = end = temp;
     else{
         Node<T>* curr = end;
+        while (curr->next != nullptr){
+            curr = curr->next;
+        }
         curr->next = temp;
         temp->prev = curr;
-        end = temp;
-        size++;
     }
+    size++;
 }
 template <typename T>
 void DSDLinkedList<T>::insertAt(int loc, T val){
@@ -183,19 +181,16 @@ void DSDLinkedList<T>::clear(){
             delete rem;
         }
     }*/
-    if (front != nullptr){
-        Node<T> *curr = front;
-        Node<T> *rem;
-        while (curr != nullptr){
-            rem = curr->next;
-            delete curr;
-            curr = rem;
-        }
+    Node<T>* temp;
+    Node<T>* tempNext;
+    temp = front;
+    while(temp != nullptr){
+        tempNext = temp->next;
+        delete temp;
+        temp = tempNext;
     }
-    if (front == nullptr){
-        delete front;
-        delete end;
-    }
+    front = nullptr;
+    end = nullptr;
     size = 0;
 }
 template <typename T>

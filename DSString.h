@@ -41,6 +41,8 @@ class DSString{
         char* c_str();
         void removeStpWrds(std::vector<DSString>&);
         void removeBdChrs(std::vector<DSString>&);
+        void removeEndPunc(DSString&);
+        DSString retLower(DSString);
         friend std::ostream& operator<< (std::ostream&, const DSString&);
         friend std::istream& operator>> (std::istream&, const DSString&);
 };

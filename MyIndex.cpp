@@ -8,6 +8,7 @@
 #include "DSVector.h"
 #include "DSDLinkedList.h"
 #include "MyIndex.h"
+#include "IndexEntry.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ void MyIndex::processWrds(DSString page, DSString words){
     char temp = words[0];
     char temp2 = ' ';
     DSString word;
+    DSString phrase;
     DSString parent = "";
     int index = 0;
     int i = 0;
@@ -47,6 +49,7 @@ void MyIndex::processWrds(DSString page, DSString words){
                 temp2 = words[i];
             }
             word = words.substr(index, i - index);
+            cout<<"--"<<word<<"--"<<endl;
             i++;
         }
         if (temp == '[') {
@@ -56,7 +59,8 @@ void MyIndex::processWrds(DSString page, DSString words){
                 i++;
                 temp2 = words[i];
             }
-            word = words.substr(index, i - index);
+            phrase = words.substr(index, i - index);
+            cout<<phrase<<endl;
             i+=2;
         }
         if (temp == '(') {
@@ -71,7 +75,7 @@ void MyIndex::processWrds(DSString page, DSString words){
             i++;
         }
         temp = words[i];
-        cout<<"--"<<word<<"--"<<endl;
+        //cout<<"--"<<word<<"--"<<endl;
         //word = " ";
         index = 0;
     }

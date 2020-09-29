@@ -14,7 +14,10 @@
 class IndexEntry{
     private:
         DSString word;
-
+        //list of page numbers?
+    public:
+        IndexEntry();
+        IndexEntry(DSString, DSString);
 };
 
 #endif //INC_20F_AUTO_IDX_INDEXENTRY_H
