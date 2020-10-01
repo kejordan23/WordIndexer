@@ -70,6 +70,7 @@ template <typename T>
 DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
     if(this == &list2)
         return *this;
+    clear();
     Node<T>* curr2 = list2.front;
     while(curr2 != nullptr){
         if(empty()){
@@ -173,15 +174,6 @@ void DSDLinkedList<T>::remove(int loc){
 }
 template <typename T>
 void DSDLinkedList<T>::clear(){
-    /*if(front != nullptr && front->next != nullptr) {
-        Node<T> *curr = front;
-        Node<T> *rem = 0;
-        for (int i = 0; i < size; i++) {
-            rem = curr;
-            curr = curr->next;
-            delete rem;
-        }
-    }*/
     Node<T>* temp;
     Node<T>* tempNext;
     temp = front;

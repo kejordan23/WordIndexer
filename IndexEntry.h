@@ -15,6 +15,7 @@ class IndexEntry{
     private:
         DSString word;
         DSDLinkedList<int> pages = DSDLinkedList<int>();
+        DSVector<DSString> subEntries = DSVector<DSString>();
     public:
         IndexEntry(){word = "";};
         IndexEntry(DSString wrd, DSString pg){
@@ -23,7 +24,33 @@ class IndexEntry{
             int page = atoi(temp.c_str());
             pages.insertAtFront(page);
         };
+        /*IndexEntry& operator=(IndexEntry i){
+            if(word == i.word)
+                return *this;
+            else{
+                word = i.word;
+                pages = i.pages;
+                if(i.subSize() != 0)
+                    subEntries = i.subEntries;
+                return *this;
+            }
+        };*/
+        bool isParent(){
+            if(subEntries.empty())
+                return false;
+            else
+                return true;
+        };
         DSString& getWord(){return word;};
+        DSString& getSubEntry(int loc){
+            return subEntries[loc];
+        };
+        void addSubEntry(DSString word){
+            subEntries.push_back(word);
+        };
+        int subSize(){
+            return subEntries.getSize();
+        };
         void addPage(DSString pg){
             DSString temp = pg.substr(1, pg.getLength()-2);
             int page = atoi(temp.c_str());

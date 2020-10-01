@@ -21,6 +21,8 @@ class MyIndex{
         MyIndex(istream&, ofstream&);
         void processWrds(DSString, DSString);
         void addToIndex(DSString, DSString);
+        void addParent(DSString, DSString);
+        void print();
 };
 
 #endif //INC_20F_AUTO_IDX_MYINDEX_H
