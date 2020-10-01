@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
         if (!output.is_open() || !inputFile.is_open())
             cout << "unable to open file" << endl;
 
-        //MyIndex i(inputFile, output);
+        MyIndex i(inputFile, output);
 
         /*
         DSString a1 = "Kylie";
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
         list4 = list;
         list4.print();*/
 
-        DSString word = "tree";
+        /*DSString word = "tree";
         DSString page = "<5>";
         DSString word2 = "tree";
         DSString page2 = "<4>";
@@ -59,9 +59,9 @@ int main(int argc, char* argv[]) {
         entries.push_back(i2);
         entries.push_back(i3);
 
-        /*IndexEntry b;
-        b = i2;
-        i2.print();
+        IndexEntry b;
+        b = i;
+        i.print();
         b.print();*/
 
         output.close();

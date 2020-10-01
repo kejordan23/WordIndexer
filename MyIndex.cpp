@@ -30,6 +30,7 @@ MyIndex::MyIndex(istream& input, ofstream& output){
         processWrds(page, words);
         words = "";
     }
+    //sort();
     print();
 }
 void MyIndex::processWrds(DSString page, DSString words){
@@ -125,6 +126,41 @@ void MyIndex::addParent(DSString word, DSString parent){
     }
     if (!dup)
         entries[index].addSubEntry(word);
+}
+void MyIndex::sort(){
+    if(entries.empty())
+        return;
+    quickSort(0, entries.getSize()-1);
+}
+void MyIndex::quickSort(int first, int second){
+    int i = first;
+    int j = second;
+    //DSString temp = entries[first + (second-first)/2].getWord();
+    DSString pivot = entries[first + (second-first)/2].getWord();
+    DSString lowI;
+    DSString lowJ;
+    while(i<=j){
+        //lowI = lowI.retLower(entries[i].getWord());
+        //lowJ = lowJ.retLower(entries[j].getWord());
+        while(entries[i].getWord() < pivot)
+            i++;
+        while(entries[j].getWord() > pivot)
+            j--;
+        if(i<=j){
+            swapEntry(i, j);
+            i++;
+            j--;
+        }
+    }
+    if(first<j)
+        quickSort(first, j);
+    if(i<second)
+        quickSort(i, second);
+}
+void MyIndex::swapEntry(int i, int j){
+    IndexEntry temp = entries[i];
+    entries[i] = entries[j];
+    entries[j] = temp;
 }
 void MyIndex::print(){
     DSString lowSub;

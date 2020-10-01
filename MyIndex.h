@@ -22,6 +22,9 @@ class MyIndex{
         void processWrds(DSString, DSString);
         void addToIndex(DSString, DSString);
         void addParent(DSString, DSString);
+        void sort();
+        void quickSort(int, int);
+        void swapEntry(int, int);
         void print();
 };
 

@@ -24,17 +24,17 @@ class IndexEntry{
             int page = atoi(temp.c_str());
             pages.insertAtFront(page);
         };
-        /*IndexEntry& operator=(IndexEntry i){
+        IndexEntry& operator=(IndexEntry& i){
             if(word == i.word)
                 return *this;
             else{
                 word = i.word;
                 pages = i.pages;
-                if(i.subSize() != 0)
+                if(i.subEntries.getSize() != 0)
                     subEntries = i.subEntries;
                 return *this;
             }
-        };*/
+        };
         bool isParent(){
             if(subEntries.empty())
                 return false;
