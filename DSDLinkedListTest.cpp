@@ -1,11 +1,16 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/21/20.
+// DSDLinkedListTest.cpp
 //
+// This source file uses TDD CATCH tests to evaluate the DSDLinkedList class
+
 
 #include "catch.hpp"
 #include "DSDLinkedList.h"
 #include "DSString.h"
 
+//tests the functions with integer values
 TEST_CASE ("DSDLinkedList class", "[int]"){
     DSDLinkedList<int> list = DSDLinkedList<int>();
     DSDLinkedList<int> list2 = DSDLinkedList<int>();
@@ -93,7 +98,7 @@ TEST_CASE ("DSDLinkedList class", "[int]"){
 }
 
 
-
+//tests the functions with DSString values
 TEST_CASE("[DSStrings]"){
     DSString a1 = "Kylie";
     DSString a2 = "John";

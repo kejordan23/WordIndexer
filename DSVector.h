@@ -1,6 +1,9 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/17/20.
+// DSVector.h
 //
+// This header file declares and defines the DSVector class constructors and functions.
 
 #ifndef INC_20F_AUTO_IDX_DSVECTOR_H
 #define INC_20F_AUTO_IDX_DSVECTOR_H
@@ -9,6 +12,7 @@
 #include <fstream>
 #include "DSString.h"
 
+//templated DSVector class has a templated data pointer, a size, and a capacity
 template <typename T>
 class DSVector{
     private:
@@ -35,7 +39,7 @@ class DSVector{
         void print();
 
 };
-
+//constructor, copy constructors, and destructor
 template <typename T>
 DSVector<T>::DSVector(){
     data = new T[50];
@@ -61,6 +65,7 @@ DSVector<T>::~DSVector(){
     delete [] data;
 }
 
+//overloaded assignment and subscript operators
 template <typename T>
 DSVector<T>& DSVector<T>::operator= (const DSVector& vec){
     T* temp = new T[vec.size];
@@ -105,7 +110,7 @@ T& DSVector<T>::getElement(int loc){
         return data[size-1];
 }
 template <typename T>
-void DSVector<T>::insert(int loc, T elem){
+void DSVector<T>::insert(int loc, T elem){          //inserts an element at a given index
     if (loc == capacity){
         push_back(elem);
     }
@@ -118,14 +123,14 @@ void DSVector<T>::insert(int loc, T elem){
     }
 }
 template <typename T>
-void DSVector<T>::push_back(T& elem){
-    if (size == capacity){
+void DSVector<T>::push_back(T& elem){           //inserts the element at the end of the vector
+    if (size == capacity){                      //checks to see if the vector has reached capacity
         T* temp = new T[capacity+1];
         for (int i=0; i<capacity; i++){
             temp[i] = data[i];
         }
 
-        delete [] data;
+        delete [] data;                         //frees memory to create more space in the vector
         capacity ++;
         data = temp;
     }
@@ -133,7 +138,7 @@ void DSVector<T>::push_back(T& elem){
     size++;
 }
 template <typename T>
-void DSVector<T>::remove(int loc){
+void DSVector<T>::remove(int loc){              //removes an element from a given index
     if (loc == (size-1))
         size--;
     else if (loc >=0 && loc<size){

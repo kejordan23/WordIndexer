@@ -1,7 +1,11 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/18/20.
+// DSDLinkedList.h
 //
-
+// This header file declares and defines the DSDLinkedList class constructors and functions.
+// The Node class and its implementation is also included in this file
+//
 #ifndef INC_20F_AUTO_IDX_DSDLINKEDLIST_H
 #define INC_20F_AUTO_IDX_DSDLINKEDLIST_H
 
@@ -10,6 +14,7 @@
 
 using namespace std;
 
+//templated Node class constructs a Node with a pointer to the next and previous node
 template <typename T>
 class Node{
 public:
@@ -19,6 +24,7 @@ public:
     Node(T& val = T(), Node* n = nullptr, Node* d = nullptr): data(val), next(n), prev(d){};
 };
 
+//templated DSDLinkedList class constructs a list of Node objects with a front Node and an end Node
 template <typename T>
 class DSDLinkedList{
     private:
@@ -26,7 +32,7 @@ class DSDLinkedList{
         Node<T>* end;
         int size;
     public:
-        DSDLinkedList(){
+        DSDLinkedList(){            //default constructor with definition inlined
             front = nullptr;
             end = nullptr;
             size = 0;
@@ -42,13 +48,14 @@ class DSDLinkedList{
         void insertAt(int, T);
         void remove(int);
         void clear();
-        void print();
+        void print(ofstream&);
 };
 
+//copy constructor
 template <typename T>
 DSDLinkedList<T>::DSDLinkedList(const DSDLinkedList<T>& list2){
     Node<T>* curr2 = list2.front;
-    for(int i=0; i<list2.size; i++){
+    for(int i=0; i<list2.size; i++){        //loops through list2 and copies each Node into this list
         Node<T>* temp = curr2;
         if(empty()){
             front = temp;
@@ -65,11 +72,12 @@ DSDLinkedList<T>::DSDLinkedList(const DSDLinkedList<T>& list2){
         curr2 = curr2->next;
     }
 }
+//overloaded copy assignment operator
 template <typename T>
 DSDLinkedList<T>& DSDLinkedList<T>::operator=(const DSDLinkedList<T>& list2){
     if(this == &list2)
         return *this;
-    clear();
+    clear();                            //frees memory in this list before assigning new Nodes
     Node<T>* curr2 = list2.front;
     while(curr2 != nullptr){
         if(empty()){
@@ -101,6 +109,7 @@ template <typename T>
 int DSDLinkedList<T>::getSize(){
     return size;
 }
+//insert functions at front, end, and a given location
 template <typename T>
 void DSDLinkedList<T>::insertAtFront(T val){
     Node<T>* temp = new Node<T>(val);
@@ -134,7 +143,7 @@ void DSDLinkedList<T>::insertAtEnd(T elem){
     size++;
 }
 template <typename T>
-void DSDLinkedList<T>::insertAt(int loc, T val){
+void DSDLinkedList<T>::insertAt(int loc, T val){    //starts from front Node and loops to find location before inserting
     if(size == 0){
         insertAtFront(val);
     }
@@ -151,6 +160,7 @@ void DSDLinkedList<T>::insertAt(int loc, T val){
         size++;
     }
 }
+//function to remove a node from the list
 template <typename T>
 void DSDLinkedList<T>::remove(int loc){
     Node<T> *curr = front;
@@ -165,9 +175,10 @@ void DSDLinkedList<T>::remove(int loc){
         front = curr->next;
     else
         curr->prev->next = curr->next;
-    delete curr;
+    delete curr;                            //frees the pointer being removed
     size--;
 }
+//function to free memory in the list
 template <typename T>
 void DSDLinkedList<T>::clear(){
     Node<T>* temp;
@@ -178,17 +189,17 @@ void DSDLinkedList<T>::clear(){
         delete temp;
         temp = tempNext;
     }
-    front = nullptr;
+    front = nullptr;                        //re-initializes the list
     end = nullptr;
     size = 0;
 }
 template <typename T>
-void DSDLinkedList<T>::print(){
+void DSDLinkedList<T>::print(ofstream& out){
     Node<T>* curr = front;
     for(int i =0; i<size; i++){
-        std::cout<< curr->data;
+        out<< curr->data;
         if(i != size-1)
-            std::cout<<", ";
+            out<<", ";
         curr = curr->next;
     }
 }

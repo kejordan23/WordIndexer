@@ -1,6 +1,9 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/25/20.
+// MyIndex.h
 //
+// This header file declares and defines the MyIndex class constructors and functions.
 
 #ifndef INC_20F_AUTO_IDX_MYINDEX_H
 #define INC_20F_AUTO_IDX_MYINDEX_H
@@ -17,7 +20,6 @@ class MyIndex{
         char line[80];
         DSVector<IndexEntry> entries = DSVector<IndexEntry>();
         DSDLinkedList<IndexEntry> final = DSDLinkedList<IndexEntry>();
-        //vector to store IndexEntry objects?
     public:
         MyIndex(istream&, ofstream&);
         void processWrds(DSString, DSString);
@@ -27,7 +29,7 @@ class MyIndex{
         void quickSort(int, int);
         void swapEntry(int, int);
         void addAlpha(IndexEntry&);
-        void print();
+        void print(ofstream&);
 };
 
 #endif //INC_20F_AUTO_IDX_MYINDEX_H

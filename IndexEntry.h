@@ -1,6 +1,9 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/25/20.
+// IndexEntry.h
 //
+// This header file declares and defines the IndexEntry class constructors and functions.
 
 #ifndef INC_20F_AUTO_IDX_INDEXENTRY_H
 #define INC_20F_AUTO_IDX_INDEXENTRY_H
@@ -11,6 +14,7 @@
 #include "DSVector.h"
 #include "DSDLinkedList.h"
 
+//each IndexEntry has a words and a list of pages. Some IndexEntries have a vector of subEntries if it is a parent word
 class IndexEntry{
     private:
         DSString word;
@@ -20,11 +24,12 @@ class IndexEntry{
         IndexEntry(){word = "";};
         IndexEntry(DSString wrd, DSString pg){
             word = wrd;
-            DSString temp = pg.substr(1, pg.getLength()-2);
+            DSString temp = pg.substr(1, pg.getLength()-2); //converts page number to an int
             int page = atoi(temp.c_str());
             pages.insertAtFront(page);
         };
-        /*IndexEntry& operator=(IndexEntry& i){
+        //overloaded assignment operator
+        IndexEntry& operator=(IndexEntry& i){
             if(word == i.word)
                 return *this;
             else{
@@ -34,7 +39,8 @@ class IndexEntry{
                     subEntries = i.subEntries;
                 return *this;
             }
-        };*/
+        };
+        //returns a value specifying whether the entry is a parent
         bool isParent(){
             if(subEntries.empty())
                 return false;
@@ -51,6 +57,7 @@ class IndexEntry{
         int subSize(){
             return subEntries.getSize();
         };
+        //adds pages to the entries list in ascending order
         void addPage(DSString pg){
             DSString temp = pg.substr(1, pg.getLength()-2);
             int page = atoi(temp.c_str());
@@ -66,10 +73,10 @@ class IndexEntry{
                     pages.insertAt(loc, page);
             }
         };
-        void print(){
-            std::cout<<word<<": ";
-            pages.print();
-            cout<<endl;
+        void print(ofstream& out){
+            out<<word<<": ";
+            pages.print(out);
+            out<<endl;
         };
 };
 

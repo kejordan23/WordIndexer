@@ -1,6 +1,9 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/25/20.
+// MyIndex.cpp
 //
+// This source file defines all the constructors and functions for the MyIndex class
 
 #include <iostream>
 #include <fstream>
@@ -35,7 +38,7 @@ MyIndex::MyIndex(istream& input, ofstream& output){
         addAlpha(entries[i]);
     for(int i=0; i<final.getSize(); i++)
         final.getElement(i).print();*/
-    print();
+    print(output);
 }
 void MyIndex::processWrds(DSString page, DSString words){
     char temp = words[0];
@@ -70,6 +73,8 @@ void MyIndex::processWrds(DSString page, DSString words){
         }
         if (words[i-1] == '(') {
             temp2 = words[i];
+            if(temp2 == '[')
+                i++;
             index = i;
             while (temp2 != ')' && temp2 != '\0') {
                 i++;
@@ -182,24 +187,24 @@ void MyIndex::addAlpha(IndexEntry& i){
             final.insertAt(loc, i);
     }
 }
-void MyIndex::print(){
+void MyIndex::print(ofstream& out){
     DSString lowSub;
     DSString lowCurr;
     for (int i=0; i<entries.getSize(); i++){
         if(entries[i].isParent()){
-            entries[i].print();
+            entries[i].print(out);
             for (int j=0; j<entries[i].subSize(); j++){
                 lowSub = lowSub.retLower(entries[i].getSubEntry(j));
                 for(int k = 0; k<entries.getSize(); k++){
                     lowCurr = lowCurr.retLower(entries[k].getWord());
                     if(lowSub == lowCurr) {
-                        cout << "    ";
-                        entries[k].print();
+                        out << "    ";
+                        entries[k].print(out);
                     }
                 }
             }
         }
         else
-            entries[i].print();
+            entries[i].print(out);
     }
 }

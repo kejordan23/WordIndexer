@@ -1,4 +1,16 @@
-
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
+// Class: CS 2341 section 801
+// Lab section: N14
+//
+// This program takes a list of keywords and their corresponding page numbers from an input file and inserts them
+// into a formatted index. Normal words are surrounded by empty space, phrases are enclosed in square brackets,
+// and any word or phrase that has a parent category is succeeded by the parent word or phrase in parentheses.
+// Both parent and subordinate entries appear in the index on their own as well as indented below the parent.
+// The pages in which these words appear are printed in ascending order after each word.
+//
+//main.cpp
+//
 #define CATCH_CONFIG_RUNNER
 #include <fstream>
 #include <iostream>
@@ -11,7 +23,9 @@
 
 using namespace std;
 
+//main() takes command line arguments argv 1: input01.txt OR input02.txt OR input03.txt and argv 2: output.txt
 int main(int argc, char* argv[]) {
+    //conditional to run CATCH tests if there are no command line arguments
     if (argc == 1) {
         return Catch::Session().run();
     }
@@ -24,46 +38,10 @@ int main(int argc, char* argv[]) {
         if (!output.is_open() || !inputFile.is_open())
             cout << "unable to open file" << endl;
 
+        //creates a MyIndex object that creates the index and outputs the results to the output file
         MyIndex i(inputFile, output);
 
-        /*
-        DSString a1 = "Kylie";
-        DSString a2 = "John";
-        DSString a3 = "Byron";
-        DSVector<DSString> vec = DSVector<DSString>();
-        vec.push_back(a1);
-        vec.push_back(a2);
-        vec.push_back(a3);
-        vec.print();*/
-
-        /*DSDLinkedList<int> list = DSDLinkedList<int>();
-        for(int i=1; i<=5; i++){
-            list.insertAtEnd(i);
-        }
-        DSDLinkedList<int> list4 = DSDLinkedList<int>();
-        list4 = list;
-        list4.print();*/
-
-        /*DSString word = "tree";
-        DSString page = "<5>";
-        DSString word2 = "tree";
-        DSString page2 = "<4>";
-        DSString page3 = "<6>";
-        DSString word4 = "binary tree";
-        IndexEntry i(word, page);
-        IndexEntry i2(word2, page2);
-        IndexEntry i3(word4, page3);
-        i.addSubEntry(word4);
-        DSVector<IndexEntry> entries = DSVector<IndexEntry>();
-        entries.push_back(i);
-        entries.push_back(i2);
-        entries.push_back(i3);
-
-        IndexEntry b;
-        b = i;
-        i.print();
-        b.print();*/
-
+        //closing both the input and output files
         output.close();
         inputFile.close();
     }

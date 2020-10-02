@@ -1,11 +1,15 @@
+// Project 2: Auto Indexer
+// Author: Kylie Jordan
 //
-// Created by Kylie Jordan on 9/17/20.
+// DSVectorTest.cpp
 //
+// This source file uses TDD CATCH tests to evaluate the DSVector class
 
 #include "catch.hpp"
 #include "DSVector.h"
 #include "DSString.h"
 
+//tests the functions with integer values
 TEST_CASE("DSVector class", "[int]"){
     DSVector<int> vec = DSVector<int>();
     DSVector<int> vec2 = DSVector<int>();
@@ -86,7 +90,7 @@ TEST_CASE("DSVector class", "[int]"){
 
 
 
-
+//tests the functions with DSString values
 TEST_CASE("[DSStrings}"){
     DSString a1 = "Kylie";
     DSString a2 = "John";
