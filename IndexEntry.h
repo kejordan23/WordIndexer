@@ -24,7 +24,7 @@ class IndexEntry{
             int page = atoi(temp.c_str());
             pages.insertAtFront(page);
         };
-        IndexEntry& operator=(IndexEntry& i){
+        /*IndexEntry& operator=(IndexEntry& i){
             if(word == i.word)
                 return *this;
             else{
@@ -34,7 +34,7 @@ class IndexEntry{
                     subEntries = i.subEntries;
                 return *this;
             }
-        };
+        };*/
         bool isParent(){
             if(subEntries.empty())
                 return false;
@@ -45,7 +45,7 @@ class IndexEntry{
         DSString& getSubEntry(int loc){
             return subEntries[loc];
         };
-        void addSubEntry(DSString word){
+        void addSubEntry(DSString& word){
             subEntries.push_back(word);
         };
         int subSize(){
@@ -67,8 +67,9 @@ class IndexEntry{
             }
         };
         void print(){
-            std::cout<<"word: "<<word<<std::endl;
+            std::cout<<word<<": ";
             pages.print();
+            cout<<endl;
         };
 };
 

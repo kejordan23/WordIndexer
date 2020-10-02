@@ -186,7 +186,9 @@ template <typename T>
 void DSDLinkedList<T>::print(){
     Node<T>* curr = front;
     for(int i =0; i<size; i++){
-        std::cout<< curr->data<<std::endl;
+        std::cout<< curr->data;
+        if(i != size-1)
+            std::cout<<", ";
         curr = curr->next;
     }
 }

@@ -16,6 +16,7 @@ class MyIndex{
     private:
         char line[80];
         DSVector<IndexEntry> entries = DSVector<IndexEntry>();
+        DSDLinkedList<IndexEntry> final = DSDLinkedList<IndexEntry>();
         //vector to store IndexEntry objects?
     public:
         MyIndex(istream&, ofstream&);
@@ -25,6 +26,7 @@ class MyIndex{
         void sort();
         void quickSort(int, int);
         void swapEntry(int, int);
+        void addAlpha(IndexEntry&);
         void print();
 };
 

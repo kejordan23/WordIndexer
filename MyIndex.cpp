@@ -31,6 +31,10 @@ MyIndex::MyIndex(istream& input, ofstream& output){
         words = "";
     }
     //sort();
+    /*for(int i = 0; i <entries.getSize(); i++)
+        addAlpha(entries[i]);
+    for(int i=0; i<final.getSize(); i++)
+        final.getElement(i).print();*/
     print();
 }
 void MyIndex::processWrds(DSString page, DSString words){
@@ -161,6 +165,22 @@ void MyIndex::swapEntry(int i, int j){
     IndexEntry temp = entries[i];
     entries[i] = entries[j];
     entries[j] = temp;
+}
+void MyIndex::addAlpha(IndexEntry& i){
+    DSString word = i.getWord();
+    if(final.getSize() == 0)
+        final.insertAtFront(i);
+    if(final.getSize() == 1 && final.getElement(0).getWord()<word)
+        final.insertAtEnd(i);
+    else if(final.getSize() == 1 && final.getElement(0).getWord()>word)
+        final.insertAtFront(i);
+    else{
+        int loc = 0;
+        while(word>final.getElement(loc).getWord())
+            loc++;
+        if(word != final.getElement(loc).getWord())
+            final.insertAt(loc, i);
+    }
 }
 void MyIndex::print(){
     DSString lowSub;
