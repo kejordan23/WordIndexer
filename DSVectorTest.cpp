@@ -101,8 +101,6 @@ TEST_CASE("[DSStrings}"){
     DSString c1 = "house";
     DSString c2 = "car";
     DSString c3 = "trailer";
-    //DSString a2[] = {"cat", "dog", "wolf", "tiger", "possum", "marmot"};
-    //DSString a3[] = {"house", "car", "trailer"};
     DSVector<DSString> vec = DSVector<DSString>();
     DSVector<DSString> vec2 = DSVector<DSString>();
     DSVector<DSString> vec3 = DSVector<DSString>();

@@ -30,7 +30,7 @@ MyIndex::MyIndex(istream& input, ofstream& output){
         processWrds(page, words);
         words = "";
     }
-    //sort();
+    sort();
     print();
 }
 void MyIndex::processWrds(DSString page, DSString words){
